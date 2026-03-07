@@ -99,6 +99,36 @@ gosec.CommonReasons.TestFixture               // "Test fixture with fake credent
 | `nolint` | Add nolint annotation | `//nolint:gosec // G117: reason` |
 | `refactor` | Broader code changes | Move hardcoded secrets to env vars |
 
+## Version-Specific Caveats
+
+Some lint rules have version-specific behaviors. See [docs/gosec-caveats.md](docs/gosec-caveats.md) for details.
+
+### G120 (gosec 2.11+)
+
+gosec 2.11+ has stricter G120 detection:
+
+1. **Only inline `http.MaxBytesReader` is recognized** - helper functions are not detected
+2. **`r.FormValue()` is flagged** even after `ParseForm()` - use `r.Form.Get()` instead
+
+```go
+// Correct pattern for gosec 2.11+
+r.Body = http.MaxBytesReader(w, r.Body, 1<<20)
+if err := r.ParseForm(); err != nil { ... }
+value := r.Form.Get("key")  // Not r.FormValue("key")
+```
+
+### Keeping Versions in Sync
+
+Keep local golangci-lint version in sync with CI to avoid surprises:
+
+```bash
+# Check version
+golangci-lint --version
+
+# Install specific version
+go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.11.1
+```
+
 ## Related Packages
 
 - [mogo/net/http/httputilmore](https://github.com/grokify/mogo) - Runtime helpers like `LimitRequestBody()`

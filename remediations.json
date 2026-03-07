@@ -57,12 +57,17 @@
         "category": "security",
         "remediation": {
           "type": "code",
-          "summary": "Use http.MaxBytesReader before parsing form data",
+          "summary": "Use http.MaxBytesReader inline before parsing form data",
           "package": "github.com/grokify/mogo/net/http/httputilmore",
           "function": "LimitRequestBody",
-          "pattern": "http.MaxBytesReader(w, r.Body, maxBytes)",
-          "example": "httputilmore.LimitRequestBody(w, r, httputilmore.DefaultMaxBodySize)\nif err := r.ParseForm(); err != nil { ... }",
-          "explanation": "Without a body size limit, an attacker can send arbitrarily large requests to exhaust server memory. Always limit body size before ParseForm, ParseMultipartForm, or reading the body directly."
+          "pattern": "r.Body = http.MaxBytesReader(w, r.Body, maxBytes)",
+          "example": "r.Body = http.MaxBytesReader(w, r.Body, 1<<20) // 1MB\nif err := r.ParseForm(); err != nil { ... }\nvalue := r.Form.Get(\"key\") // Use Form.Get, not FormValue",
+          "explanation": "Without a body size limit, an attacker can send arbitrarily large requests to exhaust server memory. Always limit body size before ParseForm, ParseMultipartForm, or reading the body directly.",
+          "caveats": [
+            "gosec 2.11+ only recognizes inline http.MaxBytesReader, not helper functions",
+            "gosec 2.11+ flags r.FormValue() even after ParseForm - use r.Form.Get() instead",
+            "Keep local golangci-lint version in sync with CI to catch these issues early"
+          ]
         },
         "references": [
           "https://cwe.mitre.org/data/definitions/400.html"
