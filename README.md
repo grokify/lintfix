@@ -1,8 +1,11 @@
 # lintfix
 
-[![Go Reference][goref-svg]][goref-url]
-[![Build Status][build-svg]][build-url]
+[![Go CI][go-ci-svg]][go-ci-url]
+[![Go Lint][go-lint-svg]][go-lint-url]
+[![Go SAST][go-sast-svg]][go-sast-url]
 [![Go Report Card][goreport-svg]][goreport-url]
+[![Docs][docs-godoc-svg]][docs-godoc-url]
+[![Visualization][viz-svg]][viz-url]
 [![License][license-svg]][license-url]
 
 A structured lint remediation database for Go projects using golangci-lint.
@@ -137,11 +140,19 @@ go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.11.1
 
 MIT License. See [LICENSE](LICENSE) file.
 
-[goref-svg]: https://pkg.go.dev/badge/github.com/grokify/lintfix.svg
-[goref-url]: https://pkg.go.dev/github.com/grokify/lintfix
-[build-svg]: https://github.com/grokify/lintfix/actions/workflows/ci.yaml/badge.svg
-[build-url]: https://github.com/grokify/lintfix/actions/workflows/ci.yaml
-[goreport-svg]: https://goreportcard.com/badge/github.com/grokify/lintfix
-[goreport-url]: https://goreportcard.com/report/github.com/grokify/lintfix
-[license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
-[license-url]: https://github.com/grokify/lintfix/blob/main/LICENSE
+ [go-ci-svg]: https://github.com/grokify/lintfix/actions/workflows/go-ci.yaml/badge.svg?branch=main
+ [go-ci-url]: https://github.com/grokify/lintfix/actions/workflows/go-ci.yaml
+ [go-lint-svg]: https://github.com/grokify/lintfix/actions/workflows/go-lint.yaml/badge.svg?branch=main
+ [go-lint-url]: https://github.com/grokify/lintfix/actions/workflows/go-lint.yaml
+ [go-sast-svg]: https://github.com/grokify/lintfix/actions/workflows/go-sast-codeql.yaml/badge.svg?branch=main
+ [go-sast-url]: https://github.com/grokify/lintfix/actions/workflows/go-sast-codeql.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/lintfix
+ [goreport-url]: https://goreportcard.com/report/github.com/grokify/lintfix
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/lintfix
+ [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/lintfix
+ [viz-svg]: https://img.shields.io/badge/visualizaton-Go-blue.svg
+ [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=grokify%2Flintfix
+ [loc-svg]: https://tokei.rs/b1/github/grokify/lintfix
+ [repo-url]: https://github.com/grokify/lintfix
+ [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
+ [license-url]: https://github.com/grokify/lintfix/blob/master/LICENSE
